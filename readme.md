@@ -20,7 +20,7 @@
   GET /api/v1/cars
 ```
 
-#### Get car by id (Progress)
+#### Get car by id
 
 ```http
   GET /api/v1/cars/:id

@@ -41,7 +41,29 @@ const createCar = async (req, res, next) => {
   }
 };
 
+const getCarById = async (req, res, next) => {
+  try {
+    const id = await req.params.id;
+
+    const car = await Car.findOne({
+      where: { id: id },
+    });
+
+    res.status(200).json({
+      status: "Success",
+      requestAt: req.requestTime,
+      data: car,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Failed",
+      message: err.message,
+    });
+  }
+};
+
 module.exports = {
   getAllCar,
   createCar,
+  getCarById,
 };
