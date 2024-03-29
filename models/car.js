@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Car.init({
     name: DataTypes.STRING,
     image: DataTypes.TEXT,
-    rentPerDay: DataTypes.FLOAT,
+    rentPerDay: DataTypes.DECIMAL,
     capacity: DataTypes.INTEGER
   }, {
     sequelize,

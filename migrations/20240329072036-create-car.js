@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       rentPerDay: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.DECIMAL(19, 2),
       },
       capacity: {
         type: Sequelize.INTEGER,

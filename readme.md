@@ -2,9 +2,8 @@
 
 ## Database Structure
 
-<!-- ![ERD](./db_structure.png) -->
 <p align="center" width="100%">
-    <img width="33%" src="./db_structure.png"> 
+    <img width="33%" src="./dbstructure.png"> 
 </p>
 
 ## Installation
