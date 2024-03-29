@@ -14,7 +14,7 @@
 
 ## API Reference
 
-#### Get all cars (Progress)
+#### Get all cars
 
 ```http
   GET /api/v1/cars
@@ -26,7 +26,7 @@
   GET /api/v1/cars/:id
 ```
 
-#### Create car (Progress)
+#### Create car
 
 ```http
   POST /api/v1/cars

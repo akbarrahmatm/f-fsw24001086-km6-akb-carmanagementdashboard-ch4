@@ -18,6 +18,30 @@ const getAllCar = async (req, res, next) => {
   }
 };
 
+const createCar = async (req, res, next) => {
+  const { name, image, rentPerDay, capacity } = req.body;
+
+  try {
+    const newCar = await Car.create({
+      name,
+      image,
+      rentPerDay,
+      capacity,
+    });
+
+    res.status(200).json({
+      status: "Success",
+      data: newCar,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Failed",
+      message: err.message,
+    });
+  }
+};
+
 module.exports = {
   getAllCar,
+  createCar,
 };
