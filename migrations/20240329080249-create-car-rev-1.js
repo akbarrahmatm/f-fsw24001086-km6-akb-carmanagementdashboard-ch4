@@ -14,6 +14,7 @@ module.exports = {
       },
       image: {
         type: Sequelize.TEXT,
+        defaultValue: "default-car.jpg",
       },
       rentPerDay: {
         type: Sequelize.DECIMAL(19, 2),
@@ -32,6 +33,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Cars");
+    await queryInterface.dropTable("CarRev1s");
   },
 };
