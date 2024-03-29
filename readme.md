@@ -1,5 +1,12 @@
 # Challenge 4 MSIB Binar Academy
 
+## Database Structure
+
+<!-- ![ERD](./db_structure.png) -->
+<p align="center" width="100%">
+    <img width="33%" src="./db_structure.png"> 
+</p>
+
 ## Installation
 
 - Clone This Repository
