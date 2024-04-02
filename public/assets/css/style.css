@@ -353,6 +353,10 @@ select:valid {
   margin-top: 250px;
 }
 
+.button-group-update {
+  margin-top: 50px;
+}
+
 .btn-cancel {
   margin-right: 10px;
 }

@@ -1,0 +1,83 @@
+<%- include('../head.ejs') %>
+
+<div class="spinner-border loading" id="loading" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb ">
+        <li class="breadcrumb-item"><a href="#">Cars</a></li>
+        <li class="breadcrumb-item"><a href="/admin/cars/list">List Car</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Update Car Information</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col my-auto">
+        <h3 class="page-title">Update Car Information</h3>
+    </div>
+    <div class="col text-end">
+    </div>
+</div>
+<div class="container-fluid container-form">
+    <form action="/admin/cars/update/<%= car.id %>" method="post" enctype="multipart/form-data">
+        <div class="row row-form">
+            <div class="col-lg-2 my-auto">
+                <label for="name">Nama <span class="text-danger">*</span></label>
+            </div>
+            <div class="col-lg-4 ">
+                <input class="form-control form-custom" type="text" name="name" value="<%= car.name %>"
+                    placeholder="Avanza" id="name" required>
+            </div>
+        </div>
+        <div class="row row-form">
+            <div class="col-lg-2 my-auto">
+                <label for="rentPerDay">Sewa Per Hari <span class="text-danger">*</span></label>
+            </div>
+            <div class="col-lg-4 ">
+                <input class="form-control form-custom" type="number" name="rentPerDay" value="<%= car.rentPerDay %>"
+                    placeholder="Rp 0,-" id="rentPerDay" required>
+            </div>
+        </div>
+        <div class="row row-form">
+            <div class="col-lg-2 my-auto">
+                <label for="name">Ukuran <span>*</span></label>
+            </div>
+            <div class="col-lg-4 ">
+                <select name="capacity" class="form-select" aria-label="Default select example">
+                    <option value="2" <%= (car.capacity === 2) ? "selected" : false %>>Small (2 Seat)</option>
+                    <option value="4" <%= (car.capacity === 4) ? "selected" : false %>>Medium (4 Seat)</option>
+                    <option value="6" <%= (car.capacity === 6) ? "selected" : false %>>Medium (6 Seat)</option>
+                    <option value="8" <%= (car.capacity === 8) ? "selected" : false %>>Large (8 Seat)</option>
+                </select>
+            </div>
+        </div>
+        <div class="row row-form">
+            <div class="col-lg-2">
+                <label for="photo">Foto <span class="text-danger">*</span></label>
+            </div>
+            <div class="col-lg-4 ">
+                <input name="file" class="form-control form-file" type="file" id="formFile">
+                <img class="border w-100 mt-3"
+                    src="<%= (car.image === "default-car.jpg") ? "/assets/img/default-car.jpg" : car.image %>" alt="">
+            </div>
+        </div>
+
+
+</div>
+
+<div class="container-fluid">
+    <div class="row button-group-update ">
+        <a href="/admin/cars/list" class="btn btn-outline-custom btn-cancel w-auto">Cancel</a>
+        <button class="btn btn-custom-primary w-auto" onclick="isLoading()">Save</button>
+    </div>
+    </form>
+</div>
+
+<script>
+    function isLoading() {
+        const loading = document.getElementById("loading")
+        loading.style.display = "block"
+    }
+</script>
+
+<%- include('../footer.ejs') %>

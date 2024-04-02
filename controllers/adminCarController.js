@@ -50,6 +50,7 @@ const listCar = async (req, res, next) => {
     }
 
     res.render("cars/list", {
+      title: "List Car",
       cars,
       carType,
       search,
@@ -65,7 +66,9 @@ const listCar = async (req, res, next) => {
 
 const createCarPage = async (req, res, next) => {
   try {
-    res.render("cars/create");
+    res.render("cars/create", {
+      title: "Add New Car",
+    });
   } catch (err) {
     res.render("error", {
       message: err.message,
@@ -73,14 +76,35 @@ const createCarPage = async (req, res, next) => {
   }
 };
 
-const editCarPage = async (req, res, next) => {};
+const editCarPage = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const car = await Car.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!car) {
+      return new Error(`Car with ID '${id}' is not found`);
+    }
+
+    res.render("cars/edit", {
+      title: "Update Car Information",
+      car,
+    });
+  } catch (err) {
+    res.render("error", {
+      message: err.message,
+    });
+  }
+};
 
 // Action Function
 const createCar = async (req, res, next) => {
   try {
     const file = await req.file;
     const { name, rentPerDay, capacity } = req.body;
-    let newCar;
 
     if (file !== "") {
       const split = file.originalname.split(".");
@@ -91,14 +115,14 @@ const createCar = async (req, res, next) => {
         fileName: `IMG-${Date.now()}.${extension}`,
       });
 
-      newCar = await Car.create({
+      await Car.create({
         name,
         rentPerDay,
         capacity,
         image: img.url,
       });
     } else {
-      newCar = await Car.create({
+      await Car.create({
         name,
         rentPerDay,
         capacity,
@@ -135,9 +159,68 @@ const deleteCar = async (req, res, next) => {
   }
 };
 
+const editCar = async (req, res, next) => {
+  try {
+    const id = await req.params.id;
+
+    console.log(id);
+
+    const { name, rentPerDay, capacity } = req.body;
+
+    const file = req.file || "";
+
+    console.log(file);
+
+    let updateCar;
+
+    if (file !== "") {
+      const split = file.originalname.split(".");
+      const extension = split[split.length - 1];
+
+      const img = await imagekit.upload({
+        file: file.buffer,
+        fileName: `IMG-${Date.now()}.${extension}`,
+      });
+
+      updateCar = await Car.update(
+        {
+          name,
+          rentPerDay,
+          capacity,
+          image: img.url,
+        },
+        {
+          where: {
+            id,
+          },
+        }
+      );
+    } else {
+      updateCar = await Car.update(
+        {
+          name,
+          rentPerDay,
+          capacity,
+        },
+        {
+          where: {
+            id,
+          },
+        }
+      );
+    }
+
+    req.flash("message", "Diedit");
+    req.flash("alertType", "primary");
+    res.redirect("/admin/cars/list");
+  } catch (err) {}
+};
+
 module.exports = {
   listCar,
   createCarPage,
+  editCarPage,
   createCar,
   deleteCar,
+  editCar,
 };

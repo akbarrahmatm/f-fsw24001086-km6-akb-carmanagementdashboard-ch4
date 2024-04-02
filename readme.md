@@ -32,13 +32,13 @@
   POST /api/v1/cars
 ```
 
-#### Update car (Progress)
+#### Update car
 
 ```http
   PUT /api/v1/cars/:id
 ```
 
-#### Delete car (Progress)
+#### Delete car
 
 ```http
   DELETE /api/v1/cars/:id

@@ -109,9 +109,33 @@ const updateCar = async (req, res, next) => {
   }
 };
 
+const deleteCar = async (req, res, next) => {
+  try {
+    const id = await req.params.id;
+
+    await Car.destroy({
+      where: {
+        id,
+      },
+    });
+
+    res.status(204).json({
+      status: "Success",
+      message: "Data successfully deleted",
+      requestAt: req.requestTime,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Failed",
+      message: err.message,
+    });
+  }
+};
+
 module.exports = {
   getAllCar,
   createCar,
   getCarById,
   updateCar,
+  deleteCar,
 };

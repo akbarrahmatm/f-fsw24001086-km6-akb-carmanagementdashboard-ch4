@@ -12,4 +12,10 @@ router
 
 router.route("/delete/:id").post(adminCarController.deleteCar);
 
+router.route("/edit/:id").get(adminCarController.editCarPage);
+
+router
+  .route("/update/:id")
+  .post(upload.single("file"), adminCarController.editCar);
+
 module.exports = router;
