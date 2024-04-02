@@ -12,6 +12,31 @@
 - `npm i`
 - `npm run dev`
 
+## Admin Dashboard
+
+#### List Car
+
+```http
+  GET /admin/cars/list
+```
+
+Feature :
+
+- Search Car `?search={carName}`
+- Filter by capacity. `?carType={small,medium,large}` Small (less than or equal 2 seats), Medium (less than or equal 6 seats), Large (greater than 6 seats)
+
+#### Edit page
+
+```http
+  GET /admin/cars/edit/:id
+```
+
+#### Create car
+
+```http
+  GET /admin/cars/add
+```
+
 ## API Reference
 
 #### Get all cars
