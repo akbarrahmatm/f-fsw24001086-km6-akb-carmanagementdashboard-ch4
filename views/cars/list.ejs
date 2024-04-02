@@ -1,4 +1,7 @@
 <%- include('../head.ejs') %>
+
+
+
 <!-- Breadcrumb -->
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb ">
@@ -8,9 +11,14 @@
 </nav>
 
 <!-- Alert -->
-<!-- <div class="alert alert-custom alert-primary-custom text-center" role="alert">
-    A simple secondary alert—check it out!
-</div> -->
+<% if(message != "") { %>
+
+<div class="alert alert-custom alert-<%= alertType %>-custom text-center" role="alert">
+    Data berhasil <%= message %>
+</div>
+
+<% } %>
+
 
 <div class="row">
     <div class="col my-auto">
@@ -55,7 +63,8 @@
         <% cars.map((car) => { %>
         <div class="col-lg-4">
             <div class="card m-card">
-                <img src="/assets/img/car_image.png" class="card-img-top" alt="Car Image">
+                <img src="<%= (car.image === "default-car.jpg") ? '/assets/img/default-car.jpg' : car.image %>"
+                    class="card-img-top" alt="<%= car.name %>">
                 <div class="card-body">
                     <h5 class="card-title"><%= car.name %></h5>
                     <h5 class="card-subtitle">
@@ -78,7 +87,7 @@
                             </button>
                         </div>
                         <div class="col-6">
-                            <a class="btn w-100 btn-success btn-edit text-center" href="update.html">
+                            <a class="btn w-100 btn-success btn-edit text-center" href="/admin/cars/edit/<%= car.id %>">
                                 <img src="/assets/img/fi_edit.svg" alt="Edit Icon">
                                 Edit
                             </a>

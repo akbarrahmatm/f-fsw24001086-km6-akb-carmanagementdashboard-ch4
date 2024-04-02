@@ -244,6 +244,9 @@ h3.page-title {
 
 .card-img-top {
   padding: 24px 24px 8px 24px;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
 }
 
 .card-title {
@@ -424,4 +427,17 @@ h5.modal-text {
 .alert-primary-custom {
   background-color: #0d28a6;
   color: white;
+}
+
+.loading {
+  display: none;
+  position: absolute;
+  top: 55%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1111;
+  padding: 10px;
+  color: #0d28a6;
 }
