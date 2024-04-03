@@ -23,6 +23,7 @@ const listCar = async (req, res, next) => {
         where: {
           capacity: {
             [Op.lte]: 6,
+            [Op.gt]: 2,
           },
         },
       });

@@ -1,9 +1,5 @@
 <%- include('../head.ejs') %>
 
-<div class="spinner-border loading" id="loading" role="status">
-    <span class="visually-hidden">Loading...</span>
-</div>
-
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb ">
         <li class="breadcrumb-item"><a href="#">Cars</a></li>
@@ -57,6 +53,7 @@
             </div>
             <div class="col-lg-4 ">
                 <input name="file" class="form-control form-file" type="file" id="formFile">
+                <small class="form-detail">File size max. 2MB</small>
                 <img class="border w-100 mt-3"
                     src="<%= (car.image === "default-car.jpg") ? "/assets/img/default-car.jpg" : car.image %>" alt="">
             </div>
@@ -69,15 +66,14 @@
     <div class="row button-group-update ">
         <a href="/admin/cars/list" class="btn btn-outline-custom btn-cancel w-auto">Cancel</a>
         <button class="btn btn-custom-primary w-auto" onclick="isLoading()">Save</button>
+        <div class="spinner-border shadow loading mx-2" id="loading" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
     </div>
     </form>
 </div>
 
-<script>
-    function isLoading() {
-        const loading = document.getElementById("loading")
-        loading.style.display = "block"
-    }
-</script>
+<script src="/assets/js/script.js"></script>
+
 
 <%- include('../footer.ejs') %>

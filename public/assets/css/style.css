@@ -327,9 +327,7 @@ h3.page-title {
   font-size: 12px;
 }
 
-.container-form .form-custom::placeholder,
-.form-select option,
-select:valid {
+.container-form .form-custom::placeholder {
   font-size: 12px;
   color: blue;
   font-weight: 300;
@@ -435,13 +433,13 @@ h5.modal-text {
 
 .loading {
   display: none;
-  position: absolute;
-  top: 55%;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 1111;
-  padding: 10px;
   color: #0d28a6;
+  background-color: white;
+}
+
+small.form-detail {
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 14px;
+  text-align: left;
 }
