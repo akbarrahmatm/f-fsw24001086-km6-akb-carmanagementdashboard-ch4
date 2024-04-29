@@ -40,6 +40,14 @@ const getAllCar = async (req, res, next) => {
       offset: offset,
     });
 
+    if (cars === 0) {
+      res.status(404).json({
+        status: "Failed",
+        message: "Cars data is not found",
+        requestAt: req.requestTime,
+      });
+    }
+
     const totalPages = Math.ceil(totalCount / pageSize);
 
     res.status(200).json({
@@ -168,7 +176,7 @@ const deleteCar = async (req, res, next) => {
       },
     });
 
-    res.status(204).json({
+    res.status(200).json({
       status: "Success",
       message: `Car with id '${id}' is successfully deleted`,
       requestAt: req.requestTime,

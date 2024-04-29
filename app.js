@@ -1,9 +1,10 @@
-require("dotenv").config();
-
 const express = require("express");
 const morgan = require("morgan");
 const flash = require("connect-flash");
 const session = require("express-session");
+const cors = require("cors");
+
+const errorController = require("./controllers/errorController");
 
 const router = require("./routes");
 
@@ -14,6 +15,9 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(`${__dirname}/public`));
+
+// Cors Allowance
+app.use(cors());
 
 const SESSION_SECRET = process.env.SESSION_SECRET;
 
@@ -36,5 +40,8 @@ app.set("views", `${__dirname}/views`);
 app.set("view engine", "ejs");
 
 app.use(router);
+
+app.use(errorController.onLost);
+app.use(errorController.onError);
 
 module.exports = app;
